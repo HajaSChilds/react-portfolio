@@ -1,0 +1,12 @@
+
+/node_modules
+
+/coverage
+
+.DS_Store
+.vscode/settings.json
+.env.local
+
+env.js
+
+npm-debug.log*

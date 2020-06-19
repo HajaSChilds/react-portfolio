@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import Axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 import NavigationContainer from './navigation/navigation-container';
 import Home from './pages/home';
@@ -12,8 +14,32 @@ import NoMatch from "./pages/no-match";
 
 
 
+
 export default class App extends Component {
+  constructor() {
+    super();
+
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
+  }
+  
+  getPortfolioItems() {
+    const axios = require("axios");
+
+    axios
+      .get("https://hajasc.devcamp.space/portfolio/portfolio_items")
+      .then(response => {
+        // handle success
+        console.log("response-data:", response);
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      })
+      
+  }
+
   render() {
+    this.getPortfolioItems();
     return (
       <div className="app">
         <h1>Haja's React Portfolio</h1>

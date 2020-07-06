@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import axios from "axios";
 
 import PortfolioItem from './portfolio-item';
-import { relativeTimeThreshold } from 'moment';
+
 
 export default class PortfolioContainer extends Component {
     constructor() {
@@ -59,7 +59,7 @@ export default class PortfolioContainer extends Component {
             key = {item.id}
             item = {item}  />;
 
-        })
+        });
     }
 
     handlePageTitleUpdate() {
@@ -79,32 +79,20 @@ export default class PortfolioContainer extends Component {
       }
      
         return (
-          <div>
-            <h2>{this.state.pageTitle}</h2>
-            <br />
-            <button onClick={() => this.handleFilter("eCommerce")}>
-              eCommerce
-            </button>
-            <button onClick={() => this.handleFilter("Scheduling")}>
-              Scheduling
-            </button>
-            <button onClick={() => this.handleFilter("Enterprise")}>
-              Enterprise
-            </button>
             <div className="portfolio-items-wrapper">
-              {this.portfolioItems()}
-            </div>
-            
-            <hr />
+                <button className="btn" onClick={() => this.handleFilter("eCommerce")}>
+                  eCommerce
+                </button>
+                <button className="btn" onClick={() => this.handleFilter("Scheduling")}>
+                  Scheduling
+                </button>
+                <button className="btn" onClick={() => this.handleFilter("Enterprise")}>
+                  Enterprise
+                </button>
 
-            <button
-              onClick={this.handlePageTitleUpdate.bind(
-                this.handlePageTitleUpdate
-              )}
-            >
-              Change Title
-            </button>
-          </div>
+              {this.portfolioItems()}
+           </div>
         );
+      }
     }
-}
+

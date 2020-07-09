@@ -8,6 +8,7 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Blog from './pages/blog';
 import PortfolioDetail from './portfolio/portfolio-detail';
+import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 
 
@@ -31,6 +32,12 @@ export default class App extends Component {
                 component={Home}
               />
               <Route
+                exact
+                path="/auth"
+                activeClassName="nav-link-active"
+                component={Auth}
+              />
+              <Route
                 path="/about-me"
                 activeClassName="nav-link-active"
                 component={About}
@@ -45,7 +52,7 @@ export default class App extends Component {
                 activeClassName="nav-link-active"
                 component={Blog}
               />
-              <Route path="/portfolio/:slug" component={PortfolioDetail}/>
+              <Route path="/portfolio/:slug" component={PortfolioDetail} />
               <Route component={NoMatch} />
             </Switch>
           </div>

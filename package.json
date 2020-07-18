@@ -9,7 +9,8 @@
     "heroku-postbuild": "npm run build",
     "precommit": "eslint src",
     "prod": "NODE_ENV=production node server.js",
-    "hey": "echo 'Hi thereee' "
+    "hey": "echo 'Hi thereee' ",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -58,7 +59,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "moment": "^2.26.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "postcss-loader": "^2.1.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -82,6 +83,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^26.1.0",
     "uglifyjs-webpack-plugin": "^1.2.7"
-  }
+  },
+
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
 }

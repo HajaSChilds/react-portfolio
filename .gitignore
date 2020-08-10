@@ -10,3 +10,5 @@
 env.js
 
 npm-debug.log*
+
+*dist

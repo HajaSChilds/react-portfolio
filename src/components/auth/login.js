@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
  
 export default class Login extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ export default class Login extends Component {
                 password: this.state.password
               }
             },
-            { withCredentials: true }
+           
             ) .then(response => {
               if (response.data.status === 'created') {
                 this.props.handleSuccessfulAuth();

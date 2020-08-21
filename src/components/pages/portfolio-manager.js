@@ -46,15 +46,18 @@ export default class PortfolioManager extends Component {
  render() {
      return (
        <div className="pm-wrapper">
-           <div className="form-section">
-               <PortfolioForm />
-               handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
-               handleFormSubmissionError={this.handleFormSubmissionError}
-           </div>
+         <div className="form-section">
+           <PortfolioForm
+             handleSuccessfulFormSubmission={
+               this.handleSuccessfulFormSubmission
+             }
+             handleFormSubmissionError={this.handleFormSubmissionError}
+           />
+         </div>
 
-           <div className="portfolio-items-section">
-               <PortfolioSidebarList data={this.state.portfolioItems} />
-           </div>
+         <div className="portfolio-items-section">
+           <PortfolioSidebarList data={this.state.portfolioItems} />
+         </div>
        </div>
      );
     };

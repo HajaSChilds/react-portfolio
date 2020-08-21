@@ -20,16 +20,14 @@ export default class PortfolioForm extends Component {
     }
 
     buildForm() {
-       let formData = new FormData() ;
-
+       let formData = new FormData();
       
      formData.append('portfolio_item[name]', this.state.name);
      formData.append('portfolio_item[description]', this.state.description);
      formData.append('portfolio_item[url]', this.state.url);
      formData.append('portfolio_item[category]', this.state.category);
-
-     debugger;
-     
+     formData.append('portfolio_item[position]', this.state.position);
+      
      return formData;
     }
 
@@ -45,7 +43,6 @@ export default class PortfolioForm extends Component {
     }
 
     
-
  render() {
      return (
        <div>

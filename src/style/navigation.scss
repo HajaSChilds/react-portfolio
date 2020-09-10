@@ -2,10 +2,25 @@
     display: flex;
     justify-content: space-between;
     padding:30px;
-}
 
-.left-side {
-    display: flex;
+
+    .right-side {
+        a {
+            margin-left: 15px;
+            cursor:pointer;
+            color: $fuschia;
+            transition: 0.5s ease-in-out;
+
+            &:hover {
+                color: $dark-pink;
+            }
+        }
+    }
+
+
+    .left-side {
+        display: flex;
+    }
 }
 
 .nav-link-wrapper {

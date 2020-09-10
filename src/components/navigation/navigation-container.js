@@ -58,12 +58,14 @@ const NavigationComponent = (props) => {
             ? dynamicLink('/portfolio-manager', 'Portfolio-Manager')
             : null}
         </div>
-        <div className="right-side">HAJA CHILDS</div>
-        {props.loggedInStatus === 'LOGGED_IN' ? (
-          <a onClick={handleSignOut}>
-            <FontAwesomeIcon icon="sign-out-alt" />
-          </a>
-        ) : null}
+        <div className="right-side">
+          Haja Childs
+          {props.loggedInStatus === 'LOGGED_IN' ? (
+            <a onClick={handleSignOut}>
+              <FontAwesomeIcon icon="sign-out-alt" />
+            </a>
+          ) : null}
+        </div>
       </div>
     );
   }

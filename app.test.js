@@ -6,6 +6,6 @@ import App from './App';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 test('renders without error', () => {
-    expect(<App />).to
+    expect(<App />).to(contain)
 })
 

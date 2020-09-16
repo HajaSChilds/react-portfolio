@@ -13,23 +13,32 @@ export default class PortfolioManager extends Component {
             portfolioToEdit: {}
         }
 
-        this.handleSuccessfulFormSubmission = this.handleSuccessfulFormSubmission.bind(this);
+        this.handleEditFormSubmission = this.handleEditFormSubmission.bind(this);
+        this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
         this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.handleEditClick = this.handleEditClick.bind(this);
+        this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this);
     }
 
+    clearPortfolioToEdit(){
+      this.setState({
+          portfolioToEdit: {}
+      });
+    }
+
+
     handleEditClick(portfolioItem) {
-      axios.get(`https://https://hajasc.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, {withCredentials: true}
+      axios.get(`https://hajasc.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, {withCredentials: true}
       )
       .then(response => {
+          console.log("icon-clicked");
           this.setState({portfolioToEdit: portfolioItem   
           })
       })
     }
   
   
-
     handleDeleteClick(portfolioItem){
       axios.delete(`https://hajasc.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, {withCredentials: true})
       .then(response => {
@@ -47,11 +56,16 @@ export default class PortfolioManager extends Component {
       console.log("handleDeleteClick", portfolioItem )
     }
 
-    handleSuccessfulFormSubmission(portfolioItem) {
+    handleNewFormSubmission(portfolioItem) {
       this.setState({
         portfolioItems: [portfolioItem].concat(this.state.portfolioItems)
       });
-        console.log("handleSuccessfulFormSubmission", portfolioItem)
+        console.log("handleNewFormSubmission", portfolioItem)
+    }
+
+
+    handleEditFormSubmission() {
+       this.getPortfolioItems();
     }
 
     handleFormSubmissionError(error) {
@@ -80,12 +94,12 @@ export default class PortfolioManager extends Component {
        <div className="pm-wrapper">
          <div className="form-section">
            <PortfolioForm
-             handleSuccessfulFormSubmission={
-               this.handleSuccessfulFormSubmission
-             }
+             handleNewFormSubmission={this.handleNewFormSubmission}
+             handleEditFormSubmission={this.handleEditFormSubmission}
              handleFormSubmissionError={this.handleFormSubmissionError}
-           />
-         </div>
+             clearPortfolioToEdit={this.clearPortfolioToEdit} 
+             portfolioToEdit={this.state.portfolioToEdit}/>
+        </div>
 
          <div className="portfolio-items-section">
            <PortfolioSidebarList 

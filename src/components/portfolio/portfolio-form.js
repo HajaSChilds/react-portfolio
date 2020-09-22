@@ -77,8 +77,8 @@ export default class PortfolioForm extends Component {
         position: position || '',
         url: url || '',
         editMode: true,
-        apiUrl: `https://hajasc.space.devcamp/portfolio/portfolio_items/${id}`,
-        apiAction: 'patch',
+        apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiAction: 'put',
         thumb_image_url: thumb_image_url || '',
         banner_image_url: banner_image_url || '',
         logo_url: logo_url || ''

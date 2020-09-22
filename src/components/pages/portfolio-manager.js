@@ -35,6 +35,7 @@ export default class PortfolioManager extends Component {
           console.log("icon-clicked");
           this.setState({portfolioToEdit: portfolioItem   
           })
+          
       })
     }
   

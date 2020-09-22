@@ -17,7 +17,7 @@ export default class PortfolioForm extends Component {
     this.state = {
       name: '',
       description: '',
-      category: 'eCommerce',
+      category: 'Business',
       position: '',
       url: '',
       thumb_image_url: '',
@@ -35,12 +35,23 @@ export default class PortfolioForm extends Component {
     this.handleThumbDrop = this.handleThumbDrop.bind(this);
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
+    this.deleteImage = this.deleteImage.bind(this);
 
     this.thumbRef = React.createRef();
     this.bannerRef = React.createRef();
     this.logoRef = React.createRef();
 
   }
+
+  deleteImage(imageType) {
+    axios.delete(`https://hajasc.devcamp.space/portfolio/delete-portfolio-image/${this.state.id}?image_type=${imageType}`, { withCredentials: true }
+    ).then(response => {
+      this.setState({ [`${imageType}_url`] : "" });
+    }).catch(error => {
+      console.log("deleteImageError", error);
+    })
+  }
+
 
   componentDidUpdate() {
     if (Object.keys(this.props.portfolioToEdit).length > 0) {
@@ -62,13 +73,18 @@ export default class PortfolioForm extends Component {
         id: id,
         name: name || '',
         description: description || '',
-        category: category || 'eCommerce',
+        category: category || 'Business',
         position: position || '',
         url: url || '',
         editMode: true,
-        apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${id}`,
-        apiAction: 'patch'
+        apiUrl: `https://hajasc.space.devcamp/portfolio/portfolio_items/${id}`,
+        apiAction: 'patch',
+        thumb_image_url: thumb_image_url || '',
+        banner_image_url: banner_image_url || '',
+        logo_url: logo_url || ''
       });
+
+      console.log('checking patch method', this.state.apiUrl);      
     }
   }
 
@@ -153,6 +169,8 @@ export default class PortfolioForm extends Component {
 
     })
       .then((response) => {
+        console.log('edit mode', this.state.editMode);
+        
          if (this.state.editMode) {
            this.props.handleEditFormSubmission();
          } else {
@@ -173,8 +191,8 @@ export default class PortfolioForm extends Component {
           thumb_image_url: '',
           banner_image: '',
           logo: '',
-          editMode: false,
-          apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${id}`,
+          editMode: true,
+          apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${this.state.id}`,
           apiAction: 'patch',
         });
 
@@ -238,40 +256,70 @@ export default class PortfolioForm extends Component {
         </div>
 
         <div className="image-uploaders three-column">
-          <div>
-            <DropzoneComponent
-              ref={this.thumbRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={this.handleThumbDrop()}
-            >
-              <div className="dz-message">Thumbnail</div>
-            </DropzoneComponent>
-          </div>
-
-          <div>
-            <DropzoneComponent
-              ref={this.bannerRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={this.handleBannerDrop()}
-            >
-              <div className="dz-message">Banner</div>
-            </DropzoneComponent>
-          </div>
-
-          <div>
-            <DropzoneComponent
-              ref={this.logoRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={this.handleLogoDrop()}
-            >
-              <div className="dz-message">Logo</div>
-            </DropzoneComponent>
-          </div>
+          {this.state.thumb_image_url && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.thumb_image_url} alt="" />
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage('thumb_image')}>
+                  Remove file
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <DropzoneComponent
+                ref={this.thumbRef}
+                config={this.componentConfig()}
+                djsConfig={this.djsConfig()}
+                eventHandlers={this.handleThumbDrop()}
+              >
+                <div className="dz-message">Thumbnail</div>
+              </DropzoneComponent>
+            </div>
+          )}
+          {this.state.banner_image_url && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.banner_image_url} alt="" />
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage('banner_image')}>
+                  Remove file
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <DropzoneComponent
+                ref={this.bannerRef}
+                config={this.componentConfig()}
+                djsConfig={this.djsConfig()}
+                eventHandlers={this.handleBannerDrop()}
+              >
+                <div className="dz-message">Banner</div>
+              </DropzoneComponent>
+            </div>
+          )}
+          {this.state.logo_url && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.logo_url} alt="" />
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage('logo')}>
+                  Remove file
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <DropzoneComponent
+                ref={this.logoRef}
+                config={this.componentConfig()}
+                djsConfig={this.djsConfig()}
+                eventHandlers={this.handleLogoDrop()}
+              >
+                <div className="dz-message">Logo</div>
+              </DropzoneComponent>
+            </div>
+          )}
         </div>
-
         <div>
           <button className="btn" type="submit">
             Save

@@ -78,13 +78,13 @@ export default class PortfolioForm extends Component {
         url: url || '',
         editMode: true,
         apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${id}`,
-        apiAction: 'put',
+        apiAction: 'patch',
         thumb_image_url: thumb_image_url || '',
         banner_image_url: banner_image_url || '',
         logo_url: logo_url || ''
       });
 
-      console.log('checking patch method', this.state.apiUrl);      
+          
     }
   }
 
@@ -151,6 +151,8 @@ export default class PortfolioForm extends Component {
       );
     }
 
+    console.log(formData)
+
     return formData;
   }
 
@@ -161,26 +163,34 @@ export default class PortfolioForm extends Component {
   }
 
   handleSubmit(event) {
+
+    console.log(this.state.apiAction)
+    console.log(this.state.apiUrl);
+    console.log(this.buildForm());
+
+
     axios({
       method: this.state.apiAction,
       url:  this.state.apiUrl,
       data: this.buildForm(),
       withCredentials: true
-
     })
       .then((response) => {
         console.log('edit mode', this.state.editMode);
-        
+   
          if (this.state.editMode) {
+           console.log('checking patch method', this.state.apiUrl); 
            this.props.handleEditFormSubmission();
          } else {
            this.props.handleNewFormSubmission(response.data.portfolio_item);
          } 
+        
 
-         
-        [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
+        if (this.thumbRef != null && this.bannerRef != null && this.logo != null) {
+          [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
-        });
+          });
+         }
         
         this.setState({
           name: '',
@@ -195,8 +205,7 @@ export default class PortfolioForm extends Component {
           apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${this.state.id}`,
           apiAction: 'patch',
         });
-
-      })
+    })
       .catch((error) => {
         console.log('portfolio form handleSubmit error', error);
       });

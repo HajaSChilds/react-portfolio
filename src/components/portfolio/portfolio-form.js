@@ -122,6 +122,12 @@ export default class PortfolioForm extends Component {
   }
 
   buildForm() {
+    console.log(this.state.name);
+    console.log(this.state.description);
+    console.log(this.state.url);
+    console.log(this.state.category);
+    console.log(this.state.position);
+    
     let formData = new FormData();
 
     formData.append('portfolio_item[name]', this.state.name);
@@ -166,7 +172,7 @@ export default class PortfolioForm extends Component {
 
     console.log(this.state.apiAction)
     console.log(this.state.apiUrl);
-    console.log(this.buildForm());
+    console.log(this.buildForm().entries());
 
 
     axios({

@@ -5,7 +5,16 @@
 
 
     .right-side {
+        display:flex;
+
+        h4 {
+            margin: 5px;
+            color: $grey;
+            white-space: nowrap;
+        }
+
         a {
+            align-self: center;
             margin-left: 15px;
             cursor:pointer;
             color: $fuschia;

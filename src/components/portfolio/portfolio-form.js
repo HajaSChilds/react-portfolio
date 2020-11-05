@@ -36,6 +36,7 @@ export default class PortfolioForm extends Component {
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
+    this.buildForm = this.buildForm.bind(this);
 
     this.thumbRef = React.createRef();
     this.bannerRef = React.createRef();
@@ -192,7 +193,7 @@ export default class PortfolioForm extends Component {
          } 
         
 
-        if (this.thumbRef != null && this.bannerRef != null && this.logo != null) {
+        if (this.thumbRef != null && this.bannerRef != null && this.logoRef != null) {
           [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
           });
@@ -201,7 +202,7 @@ export default class PortfolioForm extends Component {
         this.setState({
           name: '',
           description: '',
-          category: 'Business',
+          category: '',
           position: '',
           url: '',
           thumb_image_url: '',

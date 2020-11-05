@@ -2,3 +2,9 @@
 .ReactModal__Content--after-open {
     height: 80%
 }
+
+
+.blog-form-wrapper .image-uploaders  {
+    @include base-grid(); 
+    grid-template-columns: auto;
+}

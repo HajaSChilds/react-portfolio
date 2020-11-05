@@ -7,7 +7,7 @@ const BlogFeaturedImage = props => {
     
     return (
       <div className="featured-image-wrapper">
-        <img src={props.img} alt={title} />
+        <img src={props.img} alt={props.title} />
       </div>
     );
    

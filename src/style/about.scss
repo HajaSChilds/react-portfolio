@@ -1,0 +1,30 @@
+ .about-page-wrapper {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:0;
+    height: calc(100vh - 84px);
+
+    .page-left {
+        display:flex;
+        justify-content:center;   
+    }
+
+    .page-right{
+        padding:50px;
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        
+        h1 {
+            font-weight: 600;
+            color: $grey;
+        }
+    
+    }
+
+    @media screen and (max-width: 900px) {
+        margin: 50px;
+        grid-template-columns: 1fr;
+    }
+
+}

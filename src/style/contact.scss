@@ -35,9 +35,10 @@
 
             .handle {
                 display:flex;
+                align-items:center;
                 .icon {
-                    width: 40px;
-                    height: 40px;
+                    width: 32px;
+                    height: 32px;
                     padding-right: 5px;
 
                     img {

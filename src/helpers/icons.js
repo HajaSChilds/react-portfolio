@@ -10,7 +10,13 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 
 const Icons = () => {
- return library.add(faTrash, faSignOutAlt, faEdit, faSpinner, faPlus);
+ return library.add(
+   faTrash,
+   faSignOutAlt,
+   faEdit,
+   faSpinner,
+   faPlus,
+ );
 }
 
 export default Icons;

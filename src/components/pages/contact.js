@@ -27,7 +27,7 @@ export default function Contact() {
             <div className="icon">
               <img src={Twitter} alt="Twitter Icon" />
             </div>{' '}
-            @tech_natural
+            tech_natural
           </a>
 
           <a
@@ -44,7 +44,7 @@ export default function Contact() {
             <div className="icon">
               <img src={Dev} alt="Dev.to Icon" />{' '}
             </div>
-            @honeycomb
+            honeycomb
           </a>
 
           <a className="handle" href="https://www.github.com/HajaSChilds">
@@ -52,7 +52,7 @@ export default function Contact() {
               <img src={Github} alt="Github Icon" />
             </div>
             {' '}
-            @HajaSChilds
+            HajaSChilds
           </a>
 
           <a className="handle"  href="https://stackoverflow.com/users/7258159/greentea?tab=profile">
@@ -60,7 +60,7 @@ export default function Contact() {
               <img src={StackOverflow} alt="Stack Overflow Icon" />
             </div>
             {' '}       
-             @greentea
+             greentea
           </a>
         </div>
         <div className="attribution">

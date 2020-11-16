@@ -5,7 +5,7 @@
     height: calc(100vh - 84px);
 
     @media screen and (max-width: 900px) {
-        margin: 50px;
+        margin:10px 50px;
         grid-template-columns: 1fr;
     }
 
@@ -14,7 +14,7 @@
         justify-content:center;   
 
         @media screen and (max-width: 900px) {
-            height:60vh;
+            height:65vh;
         }     
     }
 

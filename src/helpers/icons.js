@@ -4,6 +4,8 @@ import {
   faEdit,
   faSpinner,
   faPlus,
+  faEnvelope,
+  faLock
 } from '@fortawesome/free-solid-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -16,6 +18,8 @@ const Icons = () => {
    faEdit,
    faSpinner,
    faPlus,
+   faEnvelope,
+   faLock
  );
 }
 

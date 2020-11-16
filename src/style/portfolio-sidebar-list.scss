@@ -20,7 +20,7 @@
         .actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-gap: 20px;
+            gap: 20px;
 
             .action-icon {
                 cursor:pointer;

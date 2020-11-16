@@ -3,6 +3,11 @@
     justify-content: space-between;
     padding:30px;
 
+    @media screen and (max-width: 1000px) {
+        flex-direction:column-reverse; 
+        margin: 10px 0px;
+        align-items: center;          
+    }
 
     .right-side {
         display:flex;
@@ -11,6 +16,10 @@
             margin: 5px;
             color: $grey;
             white-space: nowrap;
+             @media screen and (max-width: 1000px) {
+                 color: $fuschia;
+                 margin: 10px 0px;
+             }
         }
 
         a {

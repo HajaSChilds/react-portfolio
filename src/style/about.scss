@@ -1,12 +1,21 @@
  .about-page-wrapper {
     display:grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap:0;
+    gap:0;
     height: calc(100vh - 84px);
+
+    @media screen and (max-width: 900px) {
+        margin: 50px;
+        grid-template-columns: 1fr;
+    }
 
     .page-left {
         display:flex;
         justify-content:center;   
+
+        @media screen and (max-width: 900px) {
+            height:60vh;
+        }     
     }
 
     .page-right{
@@ -14,17 +23,17 @@
         display:flex;
         justify-content:center;
         flex-direction:column;
-        
+
+        @media screen and (max-width: 900px) {
+            margin: 20px;
+            padding: 5px;
+        }
+
         h1 {
             font-weight: 600;
             color: $grey;
         }
     
-    }
-
-    @media screen and (max-width: 900px) {
-        margin: 50px;
-        grid-template-columns: 1fr;
     }
 
 }

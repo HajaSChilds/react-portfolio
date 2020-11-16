@@ -31,7 +31,7 @@ export default class PortfolioDetail extends Component{
     componentDidMount(){
        this.getPortfolioItem();
     }
-  
+
 
     render(){
         const {banner_image_url, 
@@ -42,12 +42,37 @@ export default class PortfolioDetail extends Component{
                thumb_image_url,
                url
               } = this.state.portfolioItem;
-      return(
-         <div>
-           <img src={banner_image_url} alt=""/>
-           <h2>{name}</h2>
-           <p>{description}</p>
-       </div>
+
+       
+        const bannerImageStyles = {
+          backgroundImage: 'url(' + banner_image_url + ')',
+          width: '100%',
+          height: '100%',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',        
+        };  
+
+      return (
+        <div className="portfolio-detail-wrapper">
+          <div className="banner">
+            {' '}
+            <img style={bannerImageStyles} />
+          </div>
+          <h2>{name}</h2>
+          <div className="site-link">
+            {' '}
+            <a href={url} target="_blank" noopener>
+              View Project
+            </a>
+          </div>
+          <div className="description">
+            <p>
+              Type of Project: {''}
+              {category}
+            </p>
+            <p>{description}</p>
+          </div>
+        </div>
       );
     }
 }

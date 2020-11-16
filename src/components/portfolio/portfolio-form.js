@@ -19,9 +19,9 @@ export default class PortfolioForm extends Component {
       category: 'Business',
       position: '',
       url: '',
-      thumb_image_url: '',
-      banner_image_url: '',
-      logo_url: '',
+      thumb_image: '',
+      banner_image: '',
+      logo: '',
       editMode: false,
       apiUrl: "https://hajasc.devcamp.space/portfolio/portfolio_items",
       apiAction: 'post'
@@ -35,7 +35,7 @@ export default class PortfolioForm extends Component {
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
-    this.buildForm = this.buildForm.bind(this);
+    // this.buildForm = this.buildForm.bind(this);
 
     this.thumbRef = React.createRef();
     this.bannerRef = React.createRef();
@@ -89,19 +89,19 @@ export default class PortfolioForm extends Component {
 
   handleThumbDrop() {
     return {
-      addedfile: (file) => this.setState({thumb_image_url: file}),
+      addedfile: (file) => this.setState({thumb_image: file}),
     };
   }
 
   handleBannerDrop() {
     return {
-      addedfile: (file) => this.setState({banner_image_url: file}),
+      addedfile: (file) => this.setState({banner_image: file}),
     };
   }
 
   handleLogoDrop() {
     return {
-      addedfile: (file) => this.setState({logo_url: file}),
+      addedfile: (file) => this.setState({logo: file}),
     };
   }
 
@@ -135,24 +135,24 @@ export default class PortfolioForm extends Component {
     formData.append('portfolio_item[category]', this.state.category);
     formData.append('portfolio_item[position]', this.state.position);
 
-    if (this.state.thumb_image_url) {
+    if (this.state.thumb_image) {
       formData.append(
-        'portfolio_item[thumb_image_url]',
-        this.state.thumb_image_url
+        'portfolio_item[thumb_image]',
+        this.state.thumb_image
       );
     }
 
-    if (this.state.banner_image_url) {
+    if (this.state.banner_image) {
       formData.append(
-        'portfolio_item[banner_image_url]',
-        this.state.banner_image_url
+        'portfolio_item[banner_image]',
+        this.state.banner_image
       );
     }
 
-    if (this.state.logo_url) {
+    if (this.state.logo) {
       formData.append(
-        'portfolio_item[logo_url]',
-        this.state.logo_url
+        'portfolio_item[logo]',
+        this.state.logo
       );
     }
 
@@ -191,23 +191,6 @@ export default class PortfolioForm extends Component {
            this.props.handleNewFormSubmission(response.data.portfolio_item);
          } 
         
-
-        // if (this.thumbRef != null || this.bannerRef != null || this.logoRef != null) {
-        //   [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
-        //   ref.current.dropzone.removeAllFiles();
-        //   });
-        //  }
-        if(this.thumbRef != null ){
-          this.thumbRef.current.dropzone.removeAllFiles();
-        }
-
-        if (this.bannerRef != null) {
-          this.thumbRef.current.dropzone.removeAllFiles();
-        }
-
-        if (this.logoRef != null) {
-          this.thumbRef.current.dropzone.removeAllFiles();
-        }
         
         this.setState({
           name: '',
@@ -215,14 +198,27 @@ export default class PortfolioForm extends Component {
           category: '',
           position: '',
           url: '',
-          thumb_image_url: '',
-          banner_image_url: '',
-          logo_url: '',
+          thumb_image: '',
+          banner_image: '',
+          logo: '',
           editMode: false,
           apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items`,
           apiAction: 'post',
         });
         console.log("checking setState with update", name)
+
+        if (this.thumbRef != null) {
+          this.thumbRef.current.dropzone.removeAllFiles();
+        }
+
+        if (this.bannerRef != null) {
+          this.bannerRef.current.dropzone.removeAllFiles();
+        }
+
+        if (this.logoRef != null) {
+          this.logoRef.current.dropzone.removeAllFiles();
+        }
+        
     })
       .catch((error) => {
         console.log('portfolio form handleSubmit error', error);

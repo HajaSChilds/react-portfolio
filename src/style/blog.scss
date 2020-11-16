@@ -4,6 +4,16 @@
     margin: 0px 200px;
     align-items: center;
 
+    .admin-blog-wrapper {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+    }
     .content-container {
         display: flex;
         flex-direction: column;

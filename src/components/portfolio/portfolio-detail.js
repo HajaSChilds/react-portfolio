@@ -10,23 +10,38 @@ export default class PortfolioDetail extends Component{
             currentId: this.props.match.params.slug,
             portfolioItem: {}
         }
+      
+    }
+
+    getPortfolioItem() {
+         axios
+           .get(
+             `https://hajasc.devcamp.space/portfolio/portfolio_items/${this.state.currentId}`
+           )
+           .then((response) => {
+             console.log('portfolio-detail-response:', response.data);
+             this.setState({portfolioItem: response.data.portfolio_item});
+           })
+           .catch((error) => {
+             console.log('portfolioDetailError', error);
+           });
+
     }
 
     componentDidMount(){
-        axios.get(`https://hajasc.devcamp.space/portfolio/portfolio_items/${this.state.currentId}` 
-      )
-      .then(response => {   
-          console.log("portfolio-detail-response:", response.data)
-          this.setState({portfolioItem: response.data.portfolio_item})       
-      })
-      .catch(error => {
-      console.log("detailImageError", error);
-    })
+       this.getPortfolioItem();
     }
   
 
     render(){
-        const { name, description, banner_image_url } = this.state.portfolioItem
+        const {banner_image_url, 
+               category,
+               description,
+               logo_url,
+               name,
+               thumb_image_url,
+               url
+              } = this.state.portfolioItem;
       return(
          <div>
            <img src={banner_image_url} alt=""/>

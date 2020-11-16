@@ -13,7 +13,6 @@ export default class PortfolioForm extends Component {
     super(props); 
 
     
-
     this.state = {
       name: '',
       description: '',
@@ -21,8 +20,8 @@ export default class PortfolioForm extends Component {
       position: '',
       url: '',
       thumb_image_url: '',
-      banner_image: '',
-      logo: '',
+      banner_image_url: '',
+      logo_url: '',
       editMode: false,
       apiUrl: "https://hajasc.devcamp.space/portfolio/portfolio_items",
       apiAction: 'post'
@@ -84,8 +83,7 @@ export default class PortfolioForm extends Component {
         banner_image_url: banner_image_url || '',
         logo_url: logo_url || ''
       });
-
-          
+        
     }
   }
 
@@ -97,13 +95,13 @@ export default class PortfolioForm extends Component {
 
   handleBannerDrop() {
     return {
-      addedfile: (file) => this.setState({banner_image: file}),
+      addedfile: (file) => this.setState({banner_image_url: file}),
     };
   }
 
   handleLogoDrop() {
     return {
-      addedfile: (file) => this.setState({logo: file}),
+      addedfile: (file) => this.setState({logo_url: file}),
     };
   }
 
@@ -139,22 +137,22 @@ export default class PortfolioForm extends Component {
 
     if (this.state.thumb_image_url) {
       formData.append(
-        'portfolio_item[thumb_image]',
+        'portfolio_item[thumb_image_url]',
         this.state.thumb_image_url
       );
     }
 
-    if (this.state.banner_image) {
+    if (this.state.banner_image_url) {
       formData.append(
-        'portfolio_item[banner_image]',
-        this.state.banner_image
+        'portfolio_item[banner_image_url]',
+        this.state.banner_image_url
       );
     }
 
-    if (this.state.logo) {
+    if (this.state.logo_url) {
       formData.append(
-        'portfolio_item[logo]',
-        this.state.logo
+        'portfolio_item[logo_url]',
+        this.state.logo_url
       );
     }
 
@@ -186,18 +184,30 @@ export default class PortfolioForm extends Component {
         console.log('edit mode', this.state.editMode);
    
          if (this.state.editMode) {
-           console.log('checking patch method', this.state.apiUrl); 
+           console.log('checking patch method:', this.state.editMode + " " + this.state.apiUrl); 
            this.props.handleEditFormSubmission();
+           console.log("handleEditFormSubmission should be called")
          } else {
            this.props.handleNewFormSubmission(response.data.portfolio_item);
          } 
         
 
-        if (this.thumbRef != null && this.bannerRef != null && this.logoRef != null) {
-          [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
-          ref.current.dropzone.removeAllFiles();
-          });
-         }
+        // if (this.thumbRef != null || this.bannerRef != null || this.logoRef != null) {
+        //   [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
+        //   ref.current.dropzone.removeAllFiles();
+        //   });
+        //  }
+        if(this.thumbRef != null ){
+          this.thumbRef.current.dropzone.removeAllFiles();
+        }
+
+        if (this.bannerRef != null) {
+          this.thumbRef.current.dropzone.removeAllFiles();
+        }
+
+        if (this.logoRef != null) {
+          this.thumbRef.current.dropzone.removeAllFiles();
+        }
         
         this.setState({
           name: '',
@@ -206,12 +216,13 @@ export default class PortfolioForm extends Component {
           position: '',
           url: '',
           thumb_image_url: '',
-          banner_image: '',
-          logo: '',
-          editMode: true,
-          apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items/${this.state.id}`,
-          apiAction: 'patch',
+          banner_image_url: '',
+          logo_url: '',
+          editMode: false,
+          apiUrl: `https://hajasc.devcamp.space/portfolio/portfolio_items`,
+          apiAction: 'post',
         });
+        console.log("checking setState with update", name)
     })
       .catch((error) => {
         console.log('portfolio form handleSubmit error', error);

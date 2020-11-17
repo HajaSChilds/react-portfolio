@@ -61,7 +61,7 @@ export default class PortfolioDetail extends Component{
           <h2>{name}</h2>
           <div className="site-link">
             {' '}
-            <a href={url} target="_blank" noopener>
+            <a href={url} target="_blank" rel="noopener">
               View Project
             </a>
           </div>
